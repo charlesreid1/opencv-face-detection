@@ -49,13 +49,14 @@ def detect(img, cascade):
     # https://github.com/opencv/opencv/blob/2.4/samples/python2/facedetect.py
     rects = cascade.detectMultiScale(gray, 
                         scaleFactor=1.3, 
-                        minNeighbors=4, 
+                        minNeighbors=1, 
                         minSize=(30, 30), 
                         flags = cv.CV_HAAR_SCALE_IMAGE)
 
     if len(rects) == 0:
         return []
 
+    print(rects)
     # Turn width and height of box
     # into plot-ready image coordinates.
     # rects contains (x,y),(w,h), return (x,y),(x+w,x+h)
@@ -72,32 +73,31 @@ if __name__=="__main__":
     nested = cv2.CascadeClassifier("haarcascade_eye.xml")
 
     # Get rectangle for entire face
+    print("From faces:")
     rects = detect(gray, cascade)
-    print("Number of faces: %d"%(len(rects)))
 
     # Draw face rectangles
     vis = image.copy()
     draw_rects(vis, rects, (0,255,0))
 
+    # Get eye subrectangle
+    print("From outside:")
     subrects = detect(gray, nested)
+
+    # Draw eye subrectangle
     draw_rects(vis, subrects, (255, 0, 0))
 
-    ### for i, (x1, y1, x2, y2) in enumerate(rects):
-    ###     # Crop to just this face
-    ###     grayeye = gray[y1:y2, x1:x2]
-    ###     viseye  = vis[y1:y2,  x1:x2]
-    ###     cv2.imshow('duh',viseye)
-    ###     cv2.waitKey()
+    for i, (x1, y1, x2, y2) in enumerate(rects):
+        # Crop to just this face
+        grayeye = gray[y1:y2, x1:x2]
+        viseye  = vis[y1:y2,  x1:x2]
 
-    ###     # Get rectangle for eye
-    ###     subrects = detect(grayeye.copy(), nested)
-
-    ###     print(subrects)
-
-    ###     draw_rects(viseye, subrects, (255, 0, 0))
-    ###     print("    Number of eyes in rectangle %d: %d"%(i+1,len(subrects)))
+        # Get rectangle for eye
+        print("From inside:")
+        subrects = detect(grayeye.copy(), nested)
+        #draw_rects(viseye, subrects, (100,100,255))
+        draw_rects(vis, subrects, (100,100,255))
 
     cv2.imshow('facedetect', vis)
     cv2.waitKey()
-
 

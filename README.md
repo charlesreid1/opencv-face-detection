@@ -9,5 +9,5 @@ doing facial detection in images using OpenCV.
 
 Expected output:
 
-![Expected output from facial recognition script applied to image of George W Bush](output.png)
+<img src="output.png" width="300px" alt="Expected output from facial recognition script applied to image of George W Bush"/>
 

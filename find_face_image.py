@@ -36,33 +36,33 @@ def main():
 
 
 
-    ## Obama
+    ## Obama - works
     #IMAGE_FILE                    = "images/obama.jpg"
     #face_settings['scaleFactor']  = 1.3
     #face_settings['minNeighbors'] = 1
     #eye_settings['scaleFactor']   = 1.3
     #eye_settings['minNeighbors']  = 3
     
-    ## GWBush
-    #IMAGE_FILE                    = "images/bush.jpg"
-    #face_settings['scaleFactor']  = 1.3
-    #face_settings['minNeighbors'] = 1
-    #eye_settings['scaleFactor']   = 1.3
-    #eye_settings['minNeighbors']  = 3
+    # GWBush - works
+    IMAGE_FILE                    = "images/bush.jpg"
+    face_settings['scaleFactor']  = 1.3
+    face_settings['minNeighbors'] = 1
+    eye_settings['scaleFactor']   = 1.3
+    eye_settings['minNeighbors']  = 3
     
-    ## Me
+    ## Me - works
     #IMAGE_FILE                    = "images/me.jpg"
     #face_settings['scaleFactor']  = 1.3
     #face_settings['minNeighbors'] = 1
     #eye_settings['scaleFactor']   = 1.3
     #eye_settings['minNeighbors']  = 3
     
-    # Me too
-    IMAGE_FILE                    = "images/opencvT.png"
-    face_settings['scaleFactor']  = 1.3
-    face_settings['minNeighbors'] = 1
-    eye_settings['scaleFactor']   = 1.3
-    eye_settings['minNeighbors']  = 3
+    ## Me too - works
+    #IMAGE_FILE                    = "images/opencvT.png"
+    #face_settings['scaleFactor']  = 1.3
+    #face_settings['minNeighbors'] = 1
+    #eye_settings['scaleFactor']   = 1.3
+    #eye_settings['minNeighbors']  = 3
     
     draw_face_boxes(IMAGE_FILE, face_settings, eye_settings)
 

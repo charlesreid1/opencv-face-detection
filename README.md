@@ -29,9 +29,21 @@ In-progress tasks:
 * Uses imshow to show the images on screen
 * (Future work) image is a numpy array, so do further processing/exports
 
+## Basic Facial Recognition
+
+`basic_face_detection.py`
+* Illustrates facial detection in the simplest script possible
+* Cascade classifier is sensitive to parameter choices
+* Does not generalize
+
+**Expected output:**
+
+<img src="images/output_basic_face_detection.jpg" width="300px"/>
+
 ## Find a Face
 
 `find_face_image.py`
+* More generalized face-finding script
 * Opens an image on disk using OpenCV or Pillow
 * Create cascade classifier to find faces
 * Get rectangles containing faces
@@ -39,14 +51,6 @@ In-progress tasks:
 * Get rectangles containing eyes
 * Draw rectangles around eyes
 * Show the image of the face with rectangles
-
-Notes:
-* It's easy to accomplish 90% of the task, but it's a pain in the ass to get it working consistently.
-* Each different photo of a face requires different `scaleFactor` and `minNeighbors` settings
-* Eyes are also difficult to detect without fiddling with settings that are specific to each image.
-* [This](https://stackoverflow.com/questions/16128637/opencv-haarlike-eye-detection#16131846) SO question mentions an eye pair Haar cascade file.
-* [opencv-contrib](https://github.com/opencv/opencv_contrib) repo has additional cascade .xml files
-* See [opencv-contrib modules/face/data/cascades](https://github.com/opencv/opencv_contrib/tree/master/modules/face/data/cascades)
 
 ## Find Face in Webcam Photograph
 
@@ -56,14 +60,16 @@ Notes:
 
 
 
+## Notes
+
+Notes:
+* It's easy to write a script that *usually* detects faces, or detects *one* eye, but 
+    getting the task to work consistently, and always find a face and two eyes, is a pain.
+* The process is extremely sensitive to the parameters used for the cascading classifier.
+    Each different photo of a face requires different `scaleFactor` and `minNeighbors` settings
+* Eyes are also difficult to detect without fiddling with settings that are specific to each image.
+* [This](https://stackoverflow.com/questions/16128637/opencv-haarlike-eye-detection#16131846) SO question mentions an eye pair Haar cascade file.
+* [opencv-contrib](https://github.com/opencv/opencv_contrib) repo has additional cascade .xml files
+* See [opencv-contrib modules/face/data/cascades](https://github.com/opencv/opencv_contrib/tree/master/modules/face/data/cascades)
 
 
-## Find a Face
-
-`find_face_image.py` - find a face in an image.
-
-Expected output:
-
-<img src="output.png" width="300px" alt="Expected output from facial recognition script applied to image of George W Bush"/>
-
-Link to [OpenCV documentation](https://docs.opencv.org/master/d7/d8b/tutorial_py_face_detection.html)

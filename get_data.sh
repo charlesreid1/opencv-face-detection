@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Target face image
-wget -O face.jpeg https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/580px-George-W-Bush.jpeg
+mkdir images/
+cd images/
+wget -O bush.jpeg https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/580px-George-W-Bush.jpeg
+cd ../
 
 # Haar face detection parameters
 wget https://raw.githubusercontent.com/opencv/opencv/2.4/data/haarcascades/haarcascade_frontalface_default.xml

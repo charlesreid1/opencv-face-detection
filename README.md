@@ -11,10 +11,10 @@ repository.
 Completed tasks:
 * <s>Take a photo using a webcam</s>
 * <s>Basic face-finding code</s>
+* <s>Consistent face-finding across multiple test photographs</s>
 
 In-progress tasks:
-* Find a face in a photograph (using test images from internet)
-* Find a face in a webcam photograph (using webcam photos)
+* Webcam face-finding script
 * Find eyes in a photograph (using test images from internet)
 * Find eyes in a webcam photograph (using webcam photos)
 * Find a face that may be rotated up to N degrees (using webcam)
@@ -22,9 +22,8 @@ In-progress tasks:
 
 ## Take a Photo Using Webcam
 
-**STATUS: DONE**
+`take_photo.py` - takes a photo with a webcam
 
-`take_photo.py`
 * Imports OpenCV
 * Captures an image from the specified camera device
 * Transposes the image (rotate right)
@@ -32,26 +31,27 @@ In-progress tasks:
 * Uses imshow to show the images on screen
 * (Future work) image is a numpy array, so do further processing/exports
 
+<img src="images/pi-opencv.jpg" width="200px" />
+
 ## Basic Facial Recognition
 
-**STATUS: DONE**
+`basic_face_detection.py` - illustrate basic face detection
 
-`basic_face_detection.py`
 * Illustrates facial detection in the simplest script possible
 * Cascade classifier is sensitive to parameter choices
-* Does not generalize
+* Does not generalize well
 
 **Expected output:**
 
 <img src="images/output_basic_face_detection.jpg" width="300px"/>
 
-## Find a Face
+## Consistently Find a Face
 
 **STATUS: DONE**
 
-`find_face_image.py`
-* More generalized face-finding script
-* Opens an image on disk using OpenCV or Pillow
+`find_face_image.py` - more generalized face detection script
+
+* Open an image on disk using OpenCV or Pillow
 * Create cascade classifier to find faces
 * Get rectangles containing faces
 * Draw rectangles around faces
@@ -59,18 +59,20 @@ In-progress tasks:
 * Draw rectangles around eyes
 * Show the image of the face with rectangles
 
-This script works on a photograph of Pres. Obama, Pres. Bush, and 
-two facial images taken by the webcam that will be used with the 
-final Raspberry Pi setup (one low-res, one high-res).
+This script worked on multiple face photos, including two
+from the webcam that will be used with the final Raspberry Pi 
+setup (one low-res, one high-res).
 
 ## Find Face in Webcam Photograph
 
 `webcam_face.py`
+
 * Stream images from a webcam continuously
 * Search for faces
-* If faces detected, output detected faces and bounding boxes to image
+* If faces are detected, output detected faces and bounding boxes to image
+* Monitor output with a barebones web server
 
-## Find Rotated Face
+## Find Rotated Faces
 
 Notes:
 * https://stackoverflow.com/questions/5015124/rotated-face-detection#15997139

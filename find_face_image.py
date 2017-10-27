@@ -94,19 +94,7 @@ def draw_face_boxes(filename, face_settings, eye_settings):
     # --------
     # EYES:
 
-    ### # Get eye subrectangle
-    ### print("From outside:")
-    ### subrects = detect(gray,    eye_classifier, eye_settings)
-    ### ###subrectsL = detect(gray,  left_classifier, eye_settings)
-    ### ###subrectsR = detect(gray, right_classifier, eye_settings)
-
-    ### print("Do we have rectangles?")
-    ### print(subrects)
-    ### # Draw eye subrectangle
-    ### draw_rects(vis, subrects, (255, 0, 0))
-    ### #draw_rects(vis, subrectsL, (40, 40, 255))
-    ### #draw_rects(vis, subrectsR, (40, 40, 255))
-
+    # Look for eyes in each face rectangle
     for i, (x1, y1, x2, y2) in enumerate(rects):
         # Crop to just this face
         grayface = gray[y1:y2, x1:x2]

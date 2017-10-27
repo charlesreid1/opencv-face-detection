@@ -63,7 +63,7 @@ if __name__=="__main__":
     imgT = transpose_photo(img)
 
     # Save
-    save_image("opencv.png", img)
-    save_image("opencvT.png", imgT)
+    save_image("images/opencv.png", img)
+    save_image("images/opencvT.png", imgT)
 
 

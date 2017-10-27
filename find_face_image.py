@@ -114,7 +114,7 @@ def draw_face_boxes(filename, face_settings, eye_settings):
         #draw_rects(visface, subrectsR, (100, 255, 100))
 
 
-    cv2.imwrite("detected_faces.png", vis)
+    cv2.imwrite("images/detected_faces2.jpg", vis)
     #cv2.imshow('facedetect', vis)
     #cv2.waitKey()
 

@@ -9,7 +9,8 @@ Find a face in an image using OpenCV.
 
 Basic workflow:
     * Use Haar facial detection algorithm to find faces
-    * Draw the picture and draw bounding boxes around faces 
+    * For each face, use Haar eye detection algorithm to find eyes
+    * Draw the picture and draw bounding boxes around faces and eyes
 """
 
 def main():
@@ -21,6 +22,13 @@ def main():
             'flags'         :  cv2.cv.CV_HAAR_SCALE_IMAGE|cv2.cv.CV_HAAR_DO_ROUGH_SEARCH
     }
     
+    eye_settings = {
+            'scaleFactor'   : 1.3,
+            'minNeighbors'  : 3,
+            'minSize'       : (5,5),
+            'flags'         :  cv2.cv.CV_HAAR_SCALE_IMAGE
+    }
+
     # Other flags: 
     # cv2.cv.CV_HAAR_SCALE_IMAGE
     # cv2.cv.CV_HAAR_FIND_BIGGEST_OBJECT
@@ -28,25 +36,33 @@ def main():
 
 
 
-    ## Obama - works 
+    ## Obama - works
     #IMAGE_FILE                    = "images/obama.jpg"
     #face_settings['scaleFactor']  = 1.3
     #face_settings['minNeighbors'] = 1
+    #eye_settings['scaleFactor']   = 1.3
+    #eye_settings['minNeighbors']  = 3
     
-    ## GWBush - works
-    #IMAGE_FILE                    = "images/bush.jpg"
-    #face_settings['scaleFactor']  = 1.3
-    #face_settings['minNeighbors'] = 1
+    # GWBush - works
+    IMAGE_FILE                    = "images/bush.jpg"
+    face_settings['scaleFactor']  = 1.3
+    face_settings['minNeighbors'] = 1
+    eye_settings['scaleFactor']   = 1.3
+    eye_settings['minNeighbors']  = 3
     
-    ## Me - works 
+    ## Me - works
     #IMAGE_FILE                    = "images/me.jpg"
     #face_settings['scaleFactor']  = 1.3
     #face_settings['minNeighbors'] = 1
+    #eye_settings['scaleFactor']   = 1.3
+    #eye_settings['minNeighbors']  = 3
     
-    # Photo from webcam
-    IMAGE_FILE                    = "images/opencv.png"
-    face_settings['scaleFactor']  = 1.3
-    face_settings['minNeighbors'] = 1
+    ## Me too - works
+    #IMAGE_FILE                    = "images/opencvT.png"
+    #face_settings['scaleFactor']  = 1.3
+    #face_settings['minNeighbors'] = 1
+    #eye_settings['scaleFactor']   = 1.3
+    #eye_settings['minNeighbors']  = 3
     
     draw_face_boxes(IMAGE_FILE, face_settings, eye_settings)
 
@@ -58,25 +74,49 @@ def draw_face_boxes(filename, face_settings, eye_settings):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     gray = cv2.equalizeHist(gray)
 
-    face_classifier0    = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-    face_classifier1    = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
-    face_classifier2    = cv2.CascadeClassifier("haarcascade_frontalface_alt2.xml")
+    face_classifier  = cv2.CascadeClassifier("haarcascade_frontalface_alt2.xml")
+    #eye_classifier   = cv2.CascadeClassifier("haarcascade_eye.xml")
+    eye_classifier   = cv2.CascadeClassifier("haarcascade_mcs_eyepair_big.xml")
+    left_classifier  = cv2.CascadeClassifier("haarcascade_lefteye_2splits.xml")
+    right_classifier = cv2.CascadeClassifier("haarcascade_righteye_2splits.xml")
 
     # --------
     # FACES:
 
     # Get rectangle for entire face
     print("From faces:")
-    rects = detect(gray, face_classifier2, face_settings)
+    rects = detect(gray, face_classifier, face_settings)
 
     # Draw face rectangles
     vis = image.copy()
     draw_rects(vis, rects, (255, 0, 0))
 
-    cv2.imwrite("images/detected_faces.jpg", vis)
+    # --------
+    # EYES:
 
-    cv2.imshow('facedetect', vis)
-    cv2.waitKey()
+    # Look for eyes in each face rectangle
+    for i, (x1, y1, x2, y2) in enumerate(rects):
+        # Crop to just this face
+        grayface = gray[y1:y2, x1:x2]
+        visface  = vis[y1:y2,  x1:x2]
+
+        # Get rectangle for eye
+        print("From inside:")
+
+        #subrects  = detect(grayface,   eye_classifier, eye_settings)
+        subrects  = detect(grayface,   eye_classifier, {})#, eye_settings)
+        draw_rects(visface, subrects, (50,50,255))
+
+        #subrectsL = detect(grayface,  left_classifier, eye_settings)
+        #subrectsR = detect(grayface, right_classifier, eye_settings)
+
+        #draw_rects(visface, subrectsL, (100, 100, 255))
+        #draw_rects(visface, subrectsR, (100, 255, 100))
+
+
+    cv2.imwrite("images/detected_faces2.jpg", vis)
+    #cv2.imshow('facedetect', vis)
+    #cv2.waitKey()
 
 
 

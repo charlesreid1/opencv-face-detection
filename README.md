@@ -12,6 +12,7 @@ Completed tasks:
 * [Take a photo using a webcam](#takephoto)
 * [Basic face-finding code](#basicfacial)
 * [Consistent face-finding across multiple test photographs](#consistentfacial)
+* [Consistent face-finding and eye-finding (over-sensitive)](#consistentfaceeyes)
 
 In-progress tasks:
 * Webcam face-finding script
@@ -72,6 +73,37 @@ In-progress tasks:
 This script worked on multiple face photos, including two
 from the webcam that will be used with the final Raspberry Pi 
 setup (one low-res, one high-res).
+
+<a name="consistentfaceeyes"></a>
+<br />
+## Consistently Find Both Face and Eyes
+
+**STATUS: COMPLETE (OVER-SENSITIVE)**
+
+`find_face_and_eyes_image.py` - generalized face + eyes detection script
+
+Follows the same routine as `find_face_image.py`:
+
+* Open an image on disk using OpenCV or Pillow
+* Create cascade classifier to find faces
+* Get rectangles containing faces
+* Draw rectangles around faces
+* Get rectangles containing eyes
+* Draw rectangles around eyes
+* Show the image of the face with rectangles
+
+The problem is with eye detection, which is too sensitive to
+the particular photograph and the parameters used.
+
+Some tips:
+
+* Easy to find eyes if face is well-lit and centered
+* Dark/unlit faces make eyes (and face) difficult to detect
+* If parameters too coarse, no or one eye detected
+* If parameters too fine, mouth corners detected as eyes
+* Sometimes a single eye is found twice, with significant overlap
+* There are multiple eye detection classifiers, you should probably try them all
+* Easiest scenario is to focus on *specific* camera, *specific* configuration, *specific* lighting conditions
 
 ## Find Face in Webcam Photograph
 

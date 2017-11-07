@@ -78,7 +78,7 @@ setup (one low-res, one high-res).
 <br />
 ## Consistently Find Both Face and Eyes
 
-**STATUS: COMPLETE (OVER-SENSITIVE)**
+**STATUS: DONE (OVER-SENSITIVE)**
 
 `find_face_and_eyes_image.py` - generalized face + eyes detection script
 

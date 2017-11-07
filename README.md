@@ -13,9 +13,9 @@ Completed tasks:
 * [Basic face-finding code](#basicfacial)
 * [Consistent face-finding across multiple test photographs](#consistentfacial)
 * [Consistent face-finding and eye-finding (over-sensitive)](#consistentfaceeyes)
+* [Webcam continuous face-finding script](#webcamcontinuous)
 
 In-progress tasks:
-* Webcam face-finding script
 * Find eyes in a photograph (using test images from internet)
 * Find eyes in a webcam photograph (using webcam photos)
 * Find a face that may be rotated up to N degrees (using webcam)
@@ -105,14 +105,36 @@ Some tips:
 * There are multiple eye detection classifiers, you should probably try them all
 * Easiest scenario is to focus on *specific* camera, *specific* configuration, *specific* lighting conditions
 
-## Find Face in Webcam Photograph
+<a name="webcamcontinuous"></a>
+<br />
+## Webcam Face Detection Server
 
-`webcam_face.py`
+**STATUS: DONE**
 
-* Stream images from a webcam continuously
-* Search for faces
-* If faces are detected, output detected faces and bounding boxes to image
-* Monitor output with a barebones web server
+`webcam_continuous_face.py`
+
+Workflow:
+
+* Every N seconds, capture an image from the camera
+* Put all images into raw/
+* Run face detection algorithm
+* If face is found, draw bounding box and put into faces/
+* Create a simple index.html file that will display the last image with a found face
+
+```
+$ # Window 1: shell
+$ python webcam_continuous_face.py
+```
+
+```
+$ # Window 2: shell
+$ ./face_server_run.sh
+```
+
+```
+# Window 3: browser
+http://localhost:8080/
+```
 
 ## Find Rotated Faces
 

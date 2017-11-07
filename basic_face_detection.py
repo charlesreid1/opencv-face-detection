@@ -4,6 +4,9 @@ import cv2
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 
+# Using images other than GWB, or parameter values other than the ones below, 
+# leads to spurious features being detected, or not enough features...
+# The whole process is pretty sensitive to parameter values.
 img = cv2.imread('images/bush.jpg')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 

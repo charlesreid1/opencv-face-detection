@@ -59,7 +59,8 @@ def show_image(windowname, image):
 if __name__=="__main__":
 
     # Take
-    img = take_photo(1)
+    # (Change this to 0 to use built-in webcam, 1 to use USB webcam)
+    img = take_photo(0)
     imgT = transpose_photo(img)
 
     # Save

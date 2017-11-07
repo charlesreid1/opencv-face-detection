@@ -9,9 +9,9 @@ repository.
 ## Repository Organization
 
 Completed tasks:
-* <s>Take a photo using a webcam</s>
-* <s>Basic face-finding code</s>
-* <s>Consistent face-finding across multiple test photographs</s>
+* <s>[Take a photo using a webcam](#takephoto)</s>
+* <s>[Basic face-finding code](#basicfacial)</s>
+* <s>[Consistent face-finding across multiple test photographs](#consistentfacial)</s>
 
 In-progress tasks:
 * Webcam face-finding script
@@ -20,7 +20,11 @@ In-progress tasks:
 * Find a face that may be rotated up to N degrees (using webcam)
 * Detect sideways faces using eyes angle
 
+<a name="takephoto"></a>
+<br />
 ## Take a Photo Using Webcam
+
+**STATUS: DONE**
 
 `take_photo.py` - takes a photo with a webcam
 
@@ -33,7 +37,11 @@ In-progress tasks:
 
 <img src="images/pi-opencv.jpg" width="200px" />
 
+<a name="basicfacial"></a>
+<br />
 ## Basic Facial Recognition
+
+**STATUS: DONE**
 
 `basic_face_detection.py` - illustrate basic face detection
 

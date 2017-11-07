@@ -9,9 +9,9 @@ repository.
 ## Repository Organization
 
 Completed tasks:
-* <s>[Take a photo using a webcam](#takephoto)</s>
-* <s>[Basic face-finding code](#basicfacial)</s>
-* <s>[Consistent face-finding across multiple test photographs](#consistentfacial)</s>
+* [Take a photo using a webcam](#takephoto)
+* [Basic face-finding code](#basicfacial)
+* [Consistent face-finding across multiple test photographs](#consistentfacial)
 
 In-progress tasks:
 * Webcam face-finding script
@@ -53,6 +53,8 @@ In-progress tasks:
 
 <img src="images/output_basic_face_detection.jpg" width="300px"/>
 
+<a name="consistentfacial"></a>
+<br />
 ## Consistently Find a Face
 
 **STATUS: DONE**
